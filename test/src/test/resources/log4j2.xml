@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+
+    <!--    property配置文件全局属性的声明，使用方式为：${声明的属性名称}。-->
+    <Properties>
+        <Property name="log-path">/Users/didi/sharding-master-slave/logs</Property>
+
+        <Property name="warn-log-file">warn.log</Property>
+        <Property name="error-log-file">error.log</Property>
+        <Property name="default-log-file">default.log</Property>
+        <Property name="service-log-file">service.log</Property>
+        <Property name="biz-service-log-file">biz-service.log</Property>
+        <Property name="common-log-file">common.log</Property>
+        <Property name="integration-log-file">integration.log</Property>
+        <Property name="hotspot-log-file">hotspot.log</Property>
+        <Property name="redis-log-file">redis.log</Property>
+
+    </Properties>
+
+    <Appenders>
+
+        <!--
+        Console节点用来定义输出到控制台的Appender
+        name:指定Appender的名字.
+        target:SYSTEM_OUT 或 SYSTEM_ERR,一般只设置默认:SYSTEM_OUT.
+        PatternLayout:输出格式，不设置默认为:%m%n.
+        File节点用来定义输出到指定位置的文件的Appender.
+
+        # 设置输出的格式 pattern
+        %p：输出日志信息的优先级，即DEBUG，INFO，WARN，ERROR，FATAL。
+        %d：输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，如：%d{yyyy/MM/dd HH:mm:ss,SSS}。
+        %m:：输出代码中指定的具体日志信息。
+        %n：输出一个回车换行符，Windows平台为"\r\n"，Unix平台为"\n"。
+        %i：表示按照大小滚动,超过大小则滚动，每滚动一次则filePattern中的配置%i的值会加
+        -->
+        <Console name="console" target="SYSTEM_OUT">
+            <!--
+            日志格式最好使用自己实现的Layout类定义，而不要使用PatternLayout。因为开启异步打印日志后，使用PatternLayout可能导致每次flush的最后一行日志只输出前半部分(后半部分会在下次flush时输出)，
+            虽然最终日志是完整的，但这会导致把脉采集到的日志看起来是截断的；而使用自定义的Layout类(扩展AbstractStringLayout)输出的日志总是整行(这与PatternLayout的实现机制有关，
+            有兴趣可以debug看看log4j2源码)。
+            -->
+            <!--            可以参考bd-work-center的实现-->
+            <!--            <PatternLayout pattern="[%p][%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ}] %m%n"/>-->
+            <PatternLayout pattern="[%p][%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ}] %m%n"/>
+        </Console>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- Root节点用来指定项目的根日志，如果没有单独指定Logger，那么就会默认使用该Root日志输出 -->
+        <!--
+            level:定义日志等级，只有大于等于该等级的日志才会打印。日志等级有ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF。
+            appender-ref：定义输出源，一个Logger可以绑定多个输出源。
+            name：logger的名，在程序中调用getLogger（“logger_name”)时会根据logger_name匹配打印器，该函数会返回一个名字最匹配的打印器。一般都是和包名、类名相关的打印器名，这样在打印日志时可以携带一些类、包名，很方便定位问题。
+            additivity：表示Logger不会在父Logger的appender里输出，默认为true。
+        -->
+        <Root level="info" includeLocation="true">
+            <AppenderRef ref="console"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
