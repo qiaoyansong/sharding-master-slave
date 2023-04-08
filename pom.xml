@@ -35,6 +35,8 @@
         <log4j2.version>2.19.0</log4j2.version>
         <log4j-over-slf4j.version>1.7.36</log4j-over-slf4j.version>
         <disruptor.version>3.4.4</disruptor.version>
+        <!--   https://shardingsphere.apache.org/document/5.1.1/cn/concepts/mode/  -->
+        <sharding-jdbc.version>5.1.1</sharding-jdbc.version>
     </properties>
 
     <dependencyManagement>
@@ -49,6 +51,17 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+                <version>${sharding-jdbc.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>groovy</artifactId>
+                        <groupId>org.apache.groovy</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
