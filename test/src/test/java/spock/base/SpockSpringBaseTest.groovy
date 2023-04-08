@@ -1,6 +1,6 @@
 package spock.base
 
-import com.api.HelloRpcService
+import com.sharding.master.slave.api.HelloRpcService
 import com.dal.mapper.UserMapper
 import org.mockito.Mockito
 import org.spockframework.spring.SpringBean

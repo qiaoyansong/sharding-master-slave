@@ -1,12 +1,12 @@
 package spock.base
 
-import com.api.HelloRpcService
-import com.biz.helper.Do2DtoHelper
-import com.biz.impl.HelloServiceImpl
-import com.biz.service.HelloService
+import com.sharding.master.slave.api.HelloRpcService
+import com.sharding.master.slave.biz.helper.Do2DtoHelper
+import com.sharding.master.slave.biz.impl.HelloServiceImpl
+import com.sharding.master.slave.biz.service.HelloService
 import com.dal.mapper.UserMapper
-import com.service.HelloRpcServiceImpl
-import com.test.utils.MockHelper
+import com.sharding.master.slave.service.HelloRpcServiceImpl
+import com.sharding.master.slave.test.utils.MockHelper
 import org.mapstruct.factory.Mappers
 import org.mockito.Mockito
 import spock.lang.Specification

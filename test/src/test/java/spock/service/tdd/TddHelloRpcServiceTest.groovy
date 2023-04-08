@@ -1,10 +1,10 @@
 package spock.service.tdd
 
-import com.api.constant.RpcCode
-import com.api.result.RpcResult
-import com.api.result.SayHelloResult
+import com.sharding.master.slave.api.constant.RpcCode
+import com.sharding.master.slave.api.result.RpcResult
+import com.sharding.master.slave.api.result.SayHelloResult
 import com.dal.domain.User
-import com.param.SayHelloParam
+import com.sharding.master.slave.api.param.SayHelloParam
 import org.junit.Assert
 import org.mockito.Mockito
 import org.mockito.invocation.InvocationOnMock
