@@ -20,7 +20,7 @@
 
         <!-- 必须要有的，使用这个配置链接数据库 @TODO:是否可以扩展 以下为数据库连接的四要素-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/test?serverTimeZone=GMT"
+                        connectionURL="jdbc:mysql://localhost:3307/db_user?serverTimeZone=GMT"
                         userId="root"
                         password="qiao683586890">
         </jdbcConnection>
@@ -30,8 +30,20 @@
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator>
 
+        <!--对应的xml mapper文件  -->
+        <sqlMapGenerator targetPackage="com.sharding.master.slave.dal.mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 对应的dao接口 -->
+        <javaClientGenerator targetPackage="com.sharding.master.slave.dal.mapper"  targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
         <!-- ===========================表名=================================================== -->
-        <table tableName="user" delimitIdentifiers="true" domainObjectName="User">
+        <table tableName="t_user" delimitIdentifiers="true" domainObjectName="User" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableUpdateByExample="false" enableDeleteByExample="false"
+               selectByExampleQueryId="false"  enableInsert="true" enableCountByExample="false" enableSelectByExample="false" >
             <!--使用真实列的名字 false不使用（默认 如果有下划线转为驼峰） true使用-->
             <property name="useActualColumnNames" value="false"/>
         </table>
