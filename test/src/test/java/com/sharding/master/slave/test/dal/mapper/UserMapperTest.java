@@ -4,6 +4,7 @@ import com.sharding.master.slave.dal.domain.User;
 import com.sharding.master.slave.dal.mapper.UserMapper;
 import com.sharding.master.slave.test.BaseTestApplication;
 import org.junit.Test;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -18,10 +19,20 @@ public class UserMapperTest extends BaseTestApplication {
     private UserMapper userMapper;
 
     @Test
-    public void insert_Test_Simple() {
+    public void insertSelective_Test_Simple() {
         User user = new User();
         user.setUname("张三丰");
-        System.out.println(userMapper.insert(user));
+        System.out.println(userMapper.insertSelective(user));
+    }
+
+    @Test
+    @Transactional(rollbackFor = Throwable.class)
+    public void transaction_Test_Simple() {
+        User user = new User();
+        user.setUname("铁锤");
+        System.out.println(userMapper.insertSelective(user));
+        System.out.println(user);
+        System.out.println(userMapper.selectByPrimaryKey(user.getId()));
     }
 
 }
