@@ -1,7 +1,6 @@
 package com.sharding.master.slave.common.es;
 
 import com.alibaba.fastjson.JSON;
-import com.common.es.bean.*;
 import com.sharding.master.slave.common.es.bean.*;
 import com.sharding.master.slave.common.utils.LogFactory;
 import lombok.Setter;
